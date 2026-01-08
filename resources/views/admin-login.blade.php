@@ -19,7 +19,7 @@
             <label class="text-gray-500 mb-1" for="">Password</label>
             <input type="text" placeholder="Enter Password" class="w-full px-3 py-2 border border-gray-500 rounded-xl focus:outline-none">
         </div>
-        <button type="submit" class="w-full bg-blue-500  py-2 text-white rounded-xl">Submit</button>
+        <button type="submit" class="w-full bg-blue-500  py-2 text-white rounded-xl cursor-pointer">Submit</button>
     </form>
     </div>
 </body>
