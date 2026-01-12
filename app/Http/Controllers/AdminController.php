@@ -12,6 +12,11 @@ class AdminController extends Controller
             ['name','=',$request->name],
             ['password','=',$request->password]
         ])->first();
-        return $admin;
+        // return $admin;
+        if($admin){
+            return view("admin", ["name" => ucfirst($admin->name)]);
+        }else{
+            return "User not Found.";
+        }
     }
 }
