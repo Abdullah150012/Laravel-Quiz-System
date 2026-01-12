@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Admin;
 use App\Models\Category;
+use App\Models\Quiz;
 
 class AdminController extends Controller
 {
@@ -43,9 +44,10 @@ class AdminController extends Controller
         }
     }
     function categories(){
+        $categories = Category::get();
         $admin = Session::get('admin');
         if($admin){
-            return view("categories", ["name" => ucfirst($admin->name)]);
+            return view("categories", ["name" => ucfirst($admin->name), "categories" => $categories]);
         }else{
             return redirect("admin-login");
         }
@@ -55,6 +57,9 @@ class AdminController extends Controller
         return redirect("admin-login");
     }
     function addCategory(Request $request){
+        $validation = $request->validate([
+            "category" => "required | min:3 | unique:categories,name"
+        ]);
         $admin = Session::get('admin');
         $category = new Category();
         $category->name = $request->category;
@@ -63,5 +68,21 @@ class AdminController extends Controller
             Session::flash('category', "Category " . $request->category . " successfully added.");
         }
         return redirect('/admin-categories');
+    }
+    function deleteCategory( Request $request, $id){
+        $isDeleted = Category::find($id)->delete();
+        if($isDeleted){
+            Session::flash('category', "Category " . $request->category . " successfully Deleted.");
+        }
+        return redirect('/admin-categories');
+    }
+    function addQuiz(){
+        $categories = Category::get();
+        $admin = Session::get('admin');
+        if($admin){
+            return view("add-quiz", ["name" => ucfirst($admin->name), "categories" => $categories]);
+        }else{
+            return redirect("admin-login");
+        }
     }
 }
