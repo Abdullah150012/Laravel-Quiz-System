@@ -18,7 +18,7 @@
             <input type="text" name="quiz" placeholder="Add Quiz" class="w-full px-3 py-2 border border-gray-500 rounded-xl focus:outline-none">
         </div>
         <div>
-            <select name="category" class="w-full px-3 py-2 border border-gray-500 text-gray-500 rounded-xl focus:outline-none">
+            <select name="category_id" class="w-full px-3 py-2 border border-gray-500 text-gray-500 rounded-xl focus:outline-none">
                 <option disabled selected>Select Category</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>

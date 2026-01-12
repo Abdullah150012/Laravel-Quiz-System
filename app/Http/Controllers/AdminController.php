@@ -80,6 +80,18 @@ class AdminController extends Controller
         $categories = Category::get();
         $admin = Session::get('admin');
         if($admin){
+            $quizName = request('quiz');
+            $category_id = request('category_id');
+
+            if($quizName && $category_id && !Session::has('quizDetails')){
+                $quiz = new Quiz();
+                $quiz->name = $quizName;
+                $quiz->category_id = $category_id;
+                if($quiz->save()){
+                    Session::put('quizDetails');
+                }
+
+            }
             return view("add-quiz", ["name" => ucfirst($admin->name), "categories" => $categories]);
         }else{
             return redirect("admin-login");
