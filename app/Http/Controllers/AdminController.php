@@ -88,9 +88,8 @@ class AdminController extends Controller
                 $quiz->name = $quizName;
                 $quiz->category_id = $category_id;
                 if($quiz->save()){
-                    Session::put('quizDetails');
+                    Session::put('quizDetails',$quiz);
                 }
-
             }
             return view("add-quiz", ["name" => ucfirst($admin->name), "categories" => $categories]);
         }else{
