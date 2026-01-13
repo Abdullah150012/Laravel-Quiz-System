@@ -77,7 +77,7 @@
                     </div>
                     <button type="submit" name="submit" value="add-more" class="w-full bg-blue-500  py-2 text-white rounded-xl cursor-pointer">Add More</button>
                     <button type="submit" name="submit" value="done" class="w-full bg-green-500  py-2 text-white rounded-xl cursor-pointer">Add and Finish</button>
-                    <a href="/end-quiz" class="w-full block text-center bg-red-500  p-2 text-white rounded-xl cursor-pointer">Add and Finish</a>
+                    <a href="/end-quiz" class="w-full block text-center bg-red-500  p-2 text-white rounded-xl cursor-pointer">Finish and Leave</a>
                 </form>
             @endif
     </div>
