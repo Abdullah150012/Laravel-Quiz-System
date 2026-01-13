@@ -36,6 +36,9 @@ class AdminController extends Controller
             return "User not Found.";
         }
     }
+
+
+
     function dashboard(){
         $admin = Session::get('admin');
         if($admin){
@@ -44,6 +47,9 @@ class AdminController extends Controller
             return redirect("admin-login");
         }
     }
+
+
+
     function categories(){
         $categories = Category::get();
         $admin = Session::get('admin');
@@ -53,10 +59,16 @@ class AdminController extends Controller
             return redirect("admin-login");
         }
     }
+
+
+
     function adminLogout(){
         Session::forget('admin');
         return redirect("admin-login");
     }
+
+
+
     function addCategory(Request $request){
         $validation = $request->validate([
             "category" => "required | min:3 | unique:categories,name"
@@ -70,6 +82,9 @@ class AdminController extends Controller
         }
         return redirect('/admin-categories');
     }
+
+
+
     function deleteCategory( Request $request, $id){
         $isDeleted = Category::find($id)->delete();
         if($isDeleted){
@@ -77,9 +92,13 @@ class AdminController extends Controller
         }
         return redirect('/admin-categories');
     }
+
+
+
     function addQuiz(){
         $categories = Category::get();
         $admin = Session::get('admin');
+        $totalMCQs = 0;
         if($admin){
             $quizName = request('quiz');
             $category_id = request('category_id');
@@ -91,12 +110,18 @@ class AdminController extends Controller
                 if($quiz->save()){
                     Session::put('quizDetails',$quiz);
                 }
+            }else{
+                $quiz = Session::get('quizDetails');
+                $totalMCQs = $quiz && Mcq::where('quiz_id', $quiz->id)->count();
             }
-            return view("add-quiz", ["name" => ucfirst($admin->name), "categories" => $categories]);
+            return view("add-quiz", ["name" => ucfirst($admin->name), "categories" => $categories, "totalMCQs" => $totalMCQs]);
         }else{
             return redirect("admin-login");
         }
     }
+
+
+
     function addMCQs(Request $request){
         $request->validate([
             'question' => 'required | min:5',
@@ -128,8 +153,27 @@ class AdminController extends Controller
         }
         // return $request;
     }
+
+
+
     function endQuiz(){
         Session::forget('quizDetails');
         return redirect('/add-quiz');
     }
+
+
+
+    function showQuiz($id){
+        $admin = Session::get('admin');
+        $mcqs = Mcq::where('quiz_id', $id)->get();
+        if($admin){
+            return view("show-quiz", ["name" => ucfirst($admin->name), "mcqs" => $mcqs]);
+        }else{
+            return redirect("admin-login");
+        }
+    }
+
+
+
+
 }
