@@ -23,3 +23,5 @@ Route::get('/category/delete/{id}', [AdminController::class, 'deleteCategory']);
 Route::get('/add-quiz', [AdminController::class, 'addQuiz']);
 
 Route::post('/add-mcqs', [AdminController::class, 'addMCQs']);
+
+Route::get('/end-quiz', [AdminController::class, 'endQuiz']);
