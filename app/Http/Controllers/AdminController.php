@@ -163,11 +163,11 @@ class AdminController extends Controller
 
 
 
-    function showQuiz($id){
+    function showQuiz($id, $quizName){
         $admin = Session::get('admin');
         $mcqs = Mcq::where('quiz_id', $id)->get();
         if($admin){
-            return view("show-quiz", ["name" => ucfirst($admin->name), "mcqs" => $mcqs]);
+            return view("show-quiz", ["name" => ucfirst($admin->name), "mcqs" => $mcqs, "quizName" => $quizName]);
         }else{
             return redirect("admin-login");
         }
@@ -175,5 +175,25 @@ class AdminController extends Controller
 
 
 
-
+    function quizList($id, $category){
+        $admin = Session::get('admin');
+        $quizData = Quiz::where('category_id', $id)->get();
+        if($admin){
+            return view("quiz-list", ["name" => ucfirst($admin->name), "quizData" => $quizData, "category" => $category]);
+        }else{
+            return redirect("admin-login");
+        }
+    }
+    
+    
+    
+    // function showQuizList($id, $category){
+    //     $admin = Session::get('admin');
+    //     $quizData = Mcq::where('category_id', $id)->get();
+    //     if($admin){
+    //         return view("show-quiz", ["name" => ucfirst($admin->name), "quizData" => $quizData, "category" => $category]);
+    //     }else{
+    //         return redirect("admin-login");
+    //     }
+    // }
 }

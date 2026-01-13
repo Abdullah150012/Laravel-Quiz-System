@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin Categories Page</title>
+    <title>Show Quiz Page</title>
     @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-100 min-h-screen">
@@ -19,11 +19,11 @@
                         <li class="w-150 p-2">Name</li>
                     </ul>
                 </li>
-            @foreach ($mcqs as $mcq)
+            @foreach ($mcqs as $item)
                 <li class="even:bg-gray-200">
                     <ul class="flex justify-between">
-                        <li class="w-50 p-2">{{$mcq->id}}</li>
-                        <li class="w-150 p-2">{{$mcq->question}}</li>
+                        <li class="w-50 p-2">{{$item->id}}</li>
+                        <li class="w-150 p-2">{{$item->question}}</li>
                     </ul>
                 </li>
             @endforeach
