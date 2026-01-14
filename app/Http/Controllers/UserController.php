@@ -8,7 +8,7 @@ use App\Models\Category;
 class UserController extends Controller
 {
     function welcome(){
-        $categories = Category::get();
-            return view("welcome", ["categories" => $categories]);
+        $categories = Category::withCount('quizzes')->get();
+        return view("welcome", ["categories" => $categories]);
     }
 }
