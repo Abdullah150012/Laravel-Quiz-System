@@ -11,7 +11,7 @@
     <x-navbar name="{{$name}}"></x-navbar>
     <div class="bg-gray-100 flex flex-col items-center justify-center pt-10">
     <div class="w-200 bg-white p-8 rounded-2xl shadow-lg mt-10">
-        <h1 class="text-2xl text-blue-500">All Current Quiz's MCQs List <a href="/add-quiz" class="text-sm text-blue-500">Back</a> </h1>
+        <h1 class="text-2xl text-blue-500">All Current Quiz's MCQs List <a href="/admin-categories" class="text-sm text-blue-500">Back</a> </h1>
         <ul class="">
             <li>
                     <ul class="flex justify-between">

@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\UserController;
 
-ROute::view('/admin-login', 'admin-login');
+
+Route::get('/', [UserController::class, 'welcome']);
+
+Route::view('/admin-login', 'admin-login');
 
 Route::post('/admin-login', [AdminController::class, 'login']);
 
