@@ -47,5 +47,6 @@
         </ul>
     </div>
     </div>
+    <x-footer-user></x-footer-user>
 </body>
 </html>
